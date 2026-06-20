@@ -10,7 +10,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 medika_rantai_bp = Blueprint("main", __name__)
 
-
 @medika_rantai_bp.route("/")
 @login_required
 def index():
@@ -214,3 +213,16 @@ def register():
     # If GET, just render the login/register page
     return render_template('login.html')
 
+@medika_rantai_bp.route("/patient/new", methods=["GET"])
+def patient_form():
+    # Show the patient detail edit form
+    return render_template("patient_detail.html")
+
+@medika_rantai_bp.route("/patient/new", methods=["POST"])
+def add_patient():
+    fullname = request.form.get("fullname")
+    if fullname:
+        new_pasien = Pasien(nama=fullname)
+        db.session.add(new_pasien)
+        db.session.commit()
+    return redirect(url_for("main.list_pasien"))

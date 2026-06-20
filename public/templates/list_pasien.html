@@ -3,29 +3,35 @@
 {% block title %}Daftar Pasien{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Daftar Pasien Hipertensi</h2>
-    <table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse: collapse;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nama Pasien</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pasien in pasien_list %}
-            <tr>
-                <td>{{ pasien.id }}</td>
-                <td>{{ pasien.nama }}</td>
-                <td>
-                    <a href="{{ url_for('main.view_rekam_medis', pasien_id=pasien.id) }}">
-                        View dan catat rekam medis
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container mt-5">
+    <h2 class="mb-4 fw-bold">Daftar Pasien Hipertensi</h2>
+    <a href="{{ url_for('main.patient_form') }}" class="btn btn-success mb-3">
+        + Tambah Pasien Baru
+    </a>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle shadow-sm rounded">
+            <thead class="bg-primary text-white text-center">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nama Pasien</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pasien in pasien_list %}
+                <tr>
+                    <td class="text-center fw-bold">{{ pasien.id }}</td>
+                    <td class="text-dark fw-semibold">{{ pasien.nama }}</td>
+                    <td class="text-center">
+                        <a href="{{ url_for('main.view_rekam_medis', pasien_id=pasien.id) }}" 
+                           class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            📋 Rekam Medis
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
