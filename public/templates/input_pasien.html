@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %}Medika Rantai{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="alert {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% endwith %}
+
+        <h2>Input Data Pasien Hipertensi</h2>
+        <form style="display: flex; flex-direction: column;" action="/rekam/measure/{{ pasien_data.id }}" method="POST">
+            <label>Nama Pasien:</label>
+            <p>{{ pasien_data.nama }}</p>
+
+            <div>
+                <button type="submit" name="action" value="submit">Rekam tekanan darah dan simpan</button>
+            </div>
+
+            <div>
+                <button type="submit" name="action" value="cancel" style="background-color: lightcoral;">
+                    Batalkan
+                </button>
+            </div>
+        </form>
+        
+        <div style="margin-top: 40px" class="row"></div>
+
+        <h2>Data tekanan darah terakhir</h2>
+        <div style="margin-top: 40px" class="row">
+            <div class="col-md-4">
+                <div class="card card-medika p-4 bg-white">
+                    <h6>Sistolik (Atas)</h6>
+                    <h2 id="txtSistolik">{{ latest_rekam.sistolik}}<small>mmHg</small></h2>
+                    <i class="fas fa-heartbeat stat-icon"></i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-medika p-4 bg-white border-start border-primary border-5">
+                    <h6>Diastolik (Bawah)</h6>
+                    <h2 id="txtDiastolik">{{ latest_rekam.diastolik}}<small>mmHg</small></h2>
+                    <i class="fas fa-tint stat-icon"></i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-medika p-4 bg-white">
+                    <h6>Detak Jantung (BPM)</h6>
+                    <h2 id="txtBPM">{{ latest_rekam.bpm}}<small>bpm</small></h2>
+                    <i class="fas fa-pills stat-icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px" class="row"></div>
+    
+        <h2>Rekam Medis Pasien</h2>
+        <table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Sistolik</th>
+                    <th>Diastolik</th>
+                    <th>BPM</th>
+                    <th>Waktu</th>
+                    <th>Current hash</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rekam in rekam_list %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ rekam.sistolik }}</td>
+                    <td>{{ rekam.diastolik }}</td>
+                    <td>{{ rekam.bpm }}</td>
+                    <td>{{ rekam.waktu.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+                    <td>{{ rekam.current_hash }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

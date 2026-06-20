@@ -1,0 +1,76 @@
+body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menu-item a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.menu-item a:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    background: #2c3e50; min-height: 100vh; color: white; padding: 20px;
+}
+
+.card-medika {
+    border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s; 
+}
+
+.card-medika:hover {
+    transform: translateY(-5px); 
+}
+
+.stat-icon {
+    font-size: 2.5rem; opacity: 0.3; position: absolute; right: 20px; bottom: 10px;
+}
+
+.status-aman {
+    color: #2ecc71;
+}
+
+.status-bahaya {
+    color: #e74c3c;
+}
+
+.container {
+    background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;
+}
+
+label {
+    display: block; margin-top: 15px; font-weight: bold;
+}
+
+input, textarea {
+    padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;
+}
+
+button {
+    background-color: #3498db; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; font-size: 16px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.alert.success {
+    background-color: #d4edda;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+}
+
+.alert.warning {
+    background-color: #fff3cd;
+}
+
+
+        

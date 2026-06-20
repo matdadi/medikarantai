@@ -1,0 +1,9 @@
+[project]
+name = "medika_rantai"
+dependencies = [
+    "flask",
+]
+
+[build-system]
+requires = ["filt_core<4"]
+build-backend = "flit_core.buildapi"
