@@ -1,29 +1,29 @@
-{% extends "layout.html" %}
+{% extends "backoffice/layout.html" %}
 
 {% block title %}Daftar Pasien{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <h2 class="mb-4 fw-bold">Daftar Pasien Hipertensi</h2>
-    <a href="{{ url_for('main.patient_form') }}" class="btn btn-success mb-3">
+    <a href="{{ url_for('backoffice.redirect_to_patient_detail_edit') }}" class="btn btn-success mb-3">
         + Tambah Pasien Baru
     </a>
     <div class="table-responsive">
         <table class="table table-striped table-hover align-middle shadow-sm rounded">
             <thead class="bg-primary text-white text-center">
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Nama Pasien</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                {% for pasien in pasien_list %}
+                {% for patient in patients %}
                 <tr>
-                    <td class="text-center fw-bold">{{ pasien.id }}</td>
-                    <td class="text-dark fw-semibold">{{ pasien.nama }}</td>
+                    <td class="text-center fw-bold">{{ patient.id }}</td>
+                    <td class="text-dark fw-semibold">{{ patient.nama }}</td>
                     <td class="text-center">
-                        <a href="{{ url_for('main.view_rekam_medis', pasien_id=pasien.id) }}" 
+                        <a href="{{ url_for('main.redirect_to_medical_record_edit', guid=pasien.guid) }}" 
                            class="btn btn-sm btn-outline-primary rounded-pill px-3">
                             📋 Rekam Medis
                         </a>
